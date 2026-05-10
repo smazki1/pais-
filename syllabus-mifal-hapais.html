@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>אקדמיה | מפעל הפיס — סילבוסים</title>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #060d1f;
+    --navy2: #0a1628;
+    --teal: #0d3d3d;
+    --purple: #1e0a3c;
+    --green: #051a0f;
+    --charcoal: #0f0f1a;
+    --burgundy: #1a0510;
+    --electric-blue: #00c8ff;
+    --electric-mint: #00ffcc;
+    --electric-violet: #bf00ff;
+    --electric-green: #00ff88;
+    --electric-amber: #ffaa00;
+    --electric-magenta: #ff0080;
+    --white: #ffffff;
+    --gray: rgba(255,255,255,0.6);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Heebo', sans-serif;
+    background: var(--navy);
+    color: var(--white);
+    overflow-x: hidden;
+  }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 60px 20px;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 0%, rgba(0,200,255,0.12) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 40% at 20% 80%, rgba(191,0,255,0.1) 0%, transparent 50%),
+      radial-gradient(ellipse 50% 50% at 80% 60%, rgba(0,255,204,0.07) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .grid-bg {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,200,255,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,200,255,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(0,200,255,0.1);
+    border: 1px solid rgba(0,200,255,0.3);
+    border-radius: 100px;
+    padding: 8px 20px;
+    font-size: 13px;
+    color: var(--electric-blue);
+    letter-spacing: 0.05em;
+    margin-bottom: 32px;
+    animation: fadeDown 0.8s ease both;
+  }
+
+  .hero h1 {
+    font-size: clamp(40px, 8vw, 88px);
+    font-weight: 900;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 20px;
+    animation: fadeDown 0.8s ease 0.1s both;
+  }
+
+  .hero h1 span {
+    background: linear-gradient(135deg, var(--electric-blue), var(--electric-mint));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-sub {
+    font-size: clamp(16px, 2.5vw, 22px);
+    color: var(--gray);
+    max-width: 600px;
+    line-height: 1.6;
+    margin-bottom: 48px;
+    font-weight: 300;
+    animation: fadeDown 0.8s ease 0.2s both;
+  }
+
+  .tracks {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+    animation: fadeDown 0.8s ease 0.3s both;
+  }
+
+  .track-pill {
+    padding: 10px 24px;
+    border-radius: 100px;
+    font-size: 14px;
+    font-weight: 500;
+    border: 1px solid;
+  }
+
+  .track-pill.ai { background: rgba(0,200,255,0.1); border-color: rgba(0,200,255,0.4); color: var(--electric-blue); }
+  .track-pill.mgmt { background: rgba(255,170,0,0.1); border-color: rgba(255,170,0,0.4); color: var(--electric-amber); }
+
+  .scroll-indicator {
+    position: absolute;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: var(--gray);
+    font-size: 12px;
+    animation: bounce 2s infinite;
+  }
+
+  .scroll-indicator::after {
+    content: '';
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.4), transparent);
+  }
+
+  /* SECTION TITLES */
+  .section-header {
+    text-align: center;
+    padding: 80px 20px 48px;
+    position: relative;
+  }
+
+  .section-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1px;
+    height: 60px;
+    background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.2));
+  }
+
+  .section-label {
+    display: inline-block;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    font-size: clamp(28px, 5vw, 48px);
+    font-weight: 800;
+    line-height: 1.1;
+  }
+
+  /* CARDS GRID */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 2px;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px 80px;
+  }
+
+  .card {
+    position: relative;
+    padding: 48px 40px;
+    overflow: hidden;
+    cursor: default;
+    transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
+  }
+
+  .card:hover { transform: translateY(-4px); }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.4s;
+  }
+
+  .card:hover::before { opacity: 1; }
+
+  /* Card colors */
+  .card-navy { background: var(--navy2); }
+  .card-navy::before { background: radial-gradient(ellipse at top right, rgba(0,200,255,0.08), transparent 60%); }
+  .card-teal { background: var(--teal); }
+  .card-teal::before { background: radial-gradient(ellipse at top right, rgba(0,255,204,0.08), transparent 60%); }
+  .card-purple { background: var(--purple); }
+  .card-purple::before { background: radial-gradient(ellipse at top right, rgba(191,0,255,0.1), transparent 60%); }
+  .card-green { background: var(--green); }
+  .card-green::before { background: radial-gradient(ellipse at top right, rgba(0,255,136,0.08), transparent 60%); }
+  .card-charcoal { background: var(--charcoal); }
+  .card-charcoal::before { background: radial-gradient(ellipse at top right, rgba(255,170,0,0.08), transparent 60%); }
+  .card-burgundy { background: var(--burgundy); }
+  .card-burgundy::before { background: radial-gradient(ellipse at top right, rgba(255,0,128,0.08), transparent 60%); }
+
+  .card-number {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--gray);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .card-number::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(255,255,255,0.08);
+  }
+
+  .card-accent {
+    display: inline-block;
+    width: 32px;
+    height: 3px;
+    border-radius: 2px;
+    margin-bottom: 20px;
+  }
+
+  .accent-blue { background: var(--electric-blue); }
+  .accent-mint { background: var(--electric-mint); }
+  .accent-violet { background: var(--electric-violet); }
+  .accent-green { background: var(--electric-green); }
+  .accent-amber { background: var(--electric-amber); }
+  .accent-magenta { background: var(--electric-magenta); }
+
+  .card-headline {
+    font-size: clamp(26px, 4vw, 38px);
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 12px;
+    letter-spacing: -0.01em;
+  }
+
+  .card-hook {
+    font-size: 15px;
+    color: var(--gray);
+    line-height: 1.6;
+    margin-bottom: 36px;
+    font-weight: 300;
+  }
+
+  .card-section-title {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    font-weight: 600;
+  }
+
+  .c-blue { color: var(--electric-blue); }
+  .c-mint { color: var(--electric-mint); }
+  .c-violet { color: var(--electric-violet); }
+  .c-green { color: var(--electric-green); }
+  .c-amber { color: var(--electric-amber); }
+  .c-magenta { color: var(--electric-magenta); }
+
+  .card-audience {
+    font-size: 14px;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.8);
+    margin-bottom: 32px;
+    padding: 16px 20px;
+    background: rgba(255,255,255,0.04);
+    border-radius: 8px;
+    border-right: 2px solid;
+  }
+
+  .border-blue { border-color: var(--electric-blue); }
+  .border-mint { border-color: var(--electric-mint); }
+  .border-violet { border-color: var(--electric-violet); }
+  .border-green { border-color: var(--electric-green); }
+  .border-amber { border-color: var(--electric-amber); }
+  .border-magenta { border-color: var(--electric-magenta); }
+
+  .card-items {
+    list-style: none;
+    margin-bottom: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .card-items li {
+    font-size: 14px;
+    line-height: 1.5;
+    color: rgba(255,255,255,0.85);
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .card-items li::before {
+    content: '→';
+    font-size: 12px;
+    margin-top: 2px;
+    flex-shrink: 0;
+  }
+
+  .li-blue li::before { color: var(--electric-blue); }
+  .li-mint li::before { color: var(--electric-mint); }
+  .li-violet li::before { color: var(--electric-violet); }
+  .li-green li::before { color: var(--electric-green); }
+  .li-amber li::before { color: var(--electric-amber); }
+  .li-magenta li::before { color: var(--electric-magenta); }
+
+  .tools-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .tool-tag {
+    padding: 5px 12px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 500;
+    border: 1px solid;
+    letter-spacing: 0.02em;
+  }
+
+  .tool-blue { background: rgba(0,200,255,0.08); border-color: rgba(0,200,255,0.25); color: var(--electric-blue); }
+  .tool-mint { background: rgba(0,255,204,0.08); border-color: rgba(0,255,204,0.25); color: var(--electric-mint); }
+  .tool-violet { background: rgba(191,0,255,0.08); border-color: rgba(191,0,255,0.25); color: var(--electric-violet); }
+  .tool-green { background: rgba(0,255,136,0.08); border-color: rgba(0,255,136,0.25); color: var(--electric-green); }
+  .tool-amber { background: rgba(255,170,0,0.08); border-color: rgba(255,170,0,0.25); color: var(--electric-amber); }
+  .tool-magenta { background: rgba(255,0,128,0.08); border-color: rgba(255,0,128,0.25); color: var(--electric-magenta); }
+
+  .card-note {
+    margin-top: 20px;
+    font-size: 12px;
+    color: var(--gray);
+    line-height: 1.6;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+
+  /* DIVIDER */
+  .track-divider {
+    max-width: 1400px;
+    margin: 0 auto 0;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .track-divider-line {
+    flex: 1;
+    height: 1px;
+    background: rgba(255,255,255,0.06);
+  }
+
+  .track-divider-label {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 8px 20px;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 100px;
+    color: var(--gray);
+  }
+
+  /* FOOTER */
+  footer {
+    text-align: center;
+    padding: 60px 20px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    color: var(--gray);
+    font-size: 13px;
+    letter-spacing: 0.05em;
+  }
+
+  footer strong {
+    color: var(--white);
+    display: block;
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(6px); }
+  }
+
+  /* FULL WIDTH CARD */
+  .card-full {
+    grid-column: 1 / -1;
+  }
+
+  /* responsive */
+  @media (max-width: 600px) {
+    .cards-grid { grid-template-columns: 1fr; gap: 2px; }
+    .card { padding: 36px 28px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="grid-bg"></div>
+  <div class="hero-badge">🎓 אקדמיה של מפעל הפיס · 2026</div>
+  <h1>בחרו את<br><span>הסדנה שלכם.</span></h1>
+  <p class="hero-sub">6 סדנאות לבחירה. 4 בתחום הבינה המלאכותית, 2 בתחום כישורי הניהול. הבחירה בידיים שלכם.</p>
+  <div class="tracks">
+    <span class="track-pill ai">מסלול AI</span>
+    <span class="track-pill mgmt">מסלול כישורי ניהול וחשיבה</span>
+  </div>
+  <div class="scroll-indicator">גללו למטה</div>
+</section>
+
+<!-- AI TRACK HEADER -->
+<div class="section-header">
+  <span class="section-label">מסלול</span>
+  <h2 class="section-title c-blue">בינה מלאכותית</h2>
+</div>
+
+<div class="track-divider">
+  <div class="track-divider-line"></div>
+  <span class="track-divider-label">4 סדנאות · AI</span>
+  <div class="track-divider-line"></div>
+</div>
+
+<!-- AI CARDS -->
+<div class="cards-grid" style="margin-top:32px;">
+
+  <!-- CARD 1 -->
+  <div class="card card-navy">
+    <div class="card-number">סדנה 01</div>
+    <div class="card-accent accent-blue"></div>
+    <h2 class="card-headline">הנתונים<br>מדברים.</h2>
+    <p class="card-hook">תוך שעה תדעו איך להפוך כל מסמך למצגת. כל נתון לגרף. כל רעיון לדאשבורד.</p>
+
+    <p class="card-section-title c-blue">למי זה מיועד</p>
+    <div class="card-audience border-blue">
+      אם אתם מציגים תוכן, מנהלים צוותים, או צריכים להשפיע באמצעות נתונים — הסדנה הזו תשנה את הדרך שבה אתם עובדים.
+    </div>
+
+    <p class="card-section-title c-blue">מה תקבלו</p>
+    <ul class="card-items li-blue">
+      <li>מצגת בעיצוב מקצועי — מוכנה תוך דקות</li>
+      <li>גרפים ותרשימים שמדברים בעד עצמם</li>
+      <li>דאשבורד מנהלים — חי, ברור, ומרשים</li>
+      <li>ויז'ואל מותאם אישית שנראה כאילו עוצב ע"י מעצב</li>
+      <li>תרגול מעשי</li>
+    </ul>
+
+    <p class="card-section-title c-blue">הכלים</p>
+    <div class="tools-row">
+      <span class="tool-tag tool-blue">Gamma</span>
+      <span class="tool-tag tool-blue">NotebookLM</span>
+      <span class="tool-tag tool-blue">Grok</span>
+      <span class="tool-tag tool-blue">Gemini</span>
+      <span class="tool-tag tool-blue">Claude</span>
+    </div>
+  </div>
+
+  <!-- CARD 2 -->
+  <div class="card card-teal">
+    <div class="card-number">סדנה 02</div>
+    <div class="card-accent accent-mint"></div>
+    <h2 class="card-headline">כמה זמן בזבזתם השבוע על קריאת דוחות?</h2>
+    <p class="card-hook">AI יעשה את זה תוך שניות. הסדנה הזו תלמד אתכם איך.</p>
+
+    <p class="card-section-title c-mint">למי זה מיועד</p>
+    <div class="card-audience border-mint">
+      מנהלים, אנליסטים וכל מי שעובד עם דוחות, אקסלים ומידע מורכב — ורוצה להוציא ממנו החלטות מהירות ומדויקות.
+    </div>
+
+    <p class="card-section-title c-mint">מה תקבלו</p>
+    <ul class="card-items li-mint">
+      <li>PDF של 50 עמודים — שורה תחתונה תוך 30 שניות</li>
+      <li>אקסל עם אלפי שורות — מגמות ותובנות בלחיצת כפתור</li>
+      <li>מחקר מתחרים מקיף — בלי שעות של גוגל</li>
+      <li>הצעת ערך מבוססת דאטה אמיתי — לא אינטואיציה</li>
+      <li>תרגול מעשי</li>
+    </ul>
+
+    <p class="card-section-title c-mint">הכלים</p>
+    <div class="tools-row">
+      <span class="tool-tag tool-mint">NotebookLM</span>
+      <span class="tool-tag tool-mint">ChatGPT</span>
+      <span class="tool-tag tool-mint">Claude</span>
+      <span class="tool-tag tool-mint">Gemini</span>
+      <span class="tool-tag tool-mint">Perplexity</span>
+    </div>
+  </div>
+
+  <!-- CARD 3 -->
+  <div class="card card-purple">
+    <div class="card-number">סדנה 03</div>
+    <div class="card-accent accent-violet"></div>
+    <h2 class="card-headline">וידאו מקצועי.<br>תוך שעה.<br>לבד.</h2>
+    <p class="card-hook">בלי צלם. בלי מעצב. בלי תקציב הפקה.</p>
+
+    <p class="card-section-title c-violet">למי זה מיועד</p>
+    <div class="card-audience border-violet">
+      אנשי שיווק ותוכן שרוצים לייצר תוכן ויזואלי מרשים — מהר, בעצמאות מלאה.
+    </div>
+
+    <p class="card-section-title c-violet">מה תקבלו</p>
+    <ul class="card-items li-violet">
+      <li>תסריט וסטוריבורד — AI כותב, אתם מכוונים</li>
+      <li>תמונות מקצועיות מטקסט — בשניות</li>
+      <li>קליפ מוכן לרשתות — שנוצר בסדנה, ביום אחד</li>
+      <li>שיטת עבודה שתשתמשו בה גם מחר</li>
+      <li>תרגול מעשי</li>
+    </ul>
+
+    <p class="card-section-title c-violet">הכלים</p>
+    <div class="tools-row">
+      <span class="tool-tag tool-violet">Google Flow</span>
+      <span class="tool-tag tool-violet">Gemini Imagen</span>
+      <span class="tool-tag tool-violet">Kling AI</span>
+      <span class="tool-tag tool-violet">Hailuo</span>
+    </div>
+    <p class="card-note">* הסדנה כוללת הפעלת ניסיון חינם של חודש ב-Google — ללא חיוב בחודש הראשון</p>
+  </div>
+
+  <!-- CARD 4 -->
+  <div class="card card-green">
+    <div class="card-number">סדנה 04</div>
+    <div class="card-accent accent-green"></div>
+    <h2 class="card-headline">מרעיון<br>לכלי.</h2>
+    <p class="card-hook">בניית אפליקציות עם AI — ללא שורת קוד אחת.</p>
+
+    <p class="card-section-title c-green">למי זה מיועד</p>
+    <div class="card-audience border-green">
+      כל מי שיש לו תהליך ידני שחוזר על עצמו כל שבוע ורוצה לייעל תהליכים.
+    </div>
+
+    <p class="card-section-title c-green">מה תקבלו</p>
+    <ul class="card-items li-green">
+      <li>זיהוי בעיה תפעולית ותרגומה לכלי דיגיטלי</li>
+      <li>אפיון מהיר עם AI — מסמך דרישות תוך דקות</li>
+      <li>בניית אפליקציה מתפקדת מפרומפט בשפה טבעית</li>
+      <li>התאמה ויזואלית והעלאה לאינטרנט עם קישור חי</li>
+      <li>תרגול מעשי</li>
+    </ul>
+
+    <p class="card-section-title c-green">הכלים</p>
+    <div class="tools-row">
+      <span class="tool-tag tool-green">ChatGPT</span>
+      <span class="tool-tag tool-green">Claude</span>
+      <span class="tool-tag tool-green">Gemini</span>
+      <span class="tool-tag tool-green">Loveable</span>
+      <span class="tool-tag tool-green">Base44</span>
+      <span class="tool-tag tool-green">Google AI Studio</span>
+    </div>
+  </div>
+
+</div>
+
+<!-- MGMT TRACK HEADER -->
+<div class="section-header">
+  <span class="section-label">מסלול</span>
+  <h2 class="section-title c-amber">כישורי ניהול וחשיבה</h2>
+</div>
+
+<div class="track-divider">
+  <div class="track-divider-line"></div>
+  <span class="track-divider-label">2 סדנאות · ניהול</span>
+  <div class="track-divider-line"></div>
+</div>
+
+<!-- MGMT CARDS -->
+<div class="cards-grid" style="margin-top:32px;">
+
+  <!-- CARD 5 -->
+  <div class="card card-charcoal">
+    <div class="card-number">סדנה 05</div>
+    <div class="card-accent accent-amber"></div>
+    <h2 class="card-headline">המוח שלכם<br>עובד עליכם.</h2>
+    <p class="card-hook">בכל יום אתם מקבלים עשרות החלטות — רובן מבוססות על הטיות שאתם לא מודעים אליהן.</p>
+
+    <p class="card-section-title c-amber">למי זה מיועד</p>
+    <div class="card-audience border-amber">
+      כל מי שמקבל החלטות — בעבודה, בניהול צוות, או מול לקוחות.
+    </div>
+
+    <p class="card-section-title c-amber">מה תקבלו</p>
+    <ul class="card-items li-amber">
+      <li>זיהוי הטיות קוגניטיביות נפוצות שמשפיעות עליכם בזמן אמת</li>
+      <li>כלים מעשיים לחשיבה ביקורתית</li>
+      <li>התמודדות עם קבלת החלטות בלחץ</li>
+      <li>תרגול מעשי</li>
+    </ul>
+  </div>
+
+  <!-- CARD 6 -->
+  <div class="card card-burgundy">
+    <div class="card-number">סדנה 06</div>
+    <div class="card-accent accent-magenta"></div>
+    <h2 class="card-headline">איך אתם באמת מקבלים החלטות?</h2>
+    <p class="card-hook">בעולם דינמי ומשתנה, היכולת לקבל החלטות חכמות היא היתרון התחרותי שלכם.</p>
+
+    <p class="card-section-title c-magenta">למי זה מיועד</p>
+    <div class="card-audience border-magenta">
+      מנהלים, אנשי מכירות וכל מי שצריך לשכנע, להשפיע ולקבל החלטות תחת לחץ.
+    </div>
+
+    <p class="card-section-title c-magenta">מה תקבלו</p>
+    <ul class="card-items li-magenta">
+      <li>מודלים מדעיים מתחום הכלכלה ההתנהגותית</li>
+      <li>להבין איך אנשים באמת מקבלים החלטות</li>
+      <li>טכניקות דחיפה עדינה לשכנוע והשפעה</li>
+      <li>שימוש באפקטים התנהגותיים במכירות ובניהול</li>
+      <li>כלים לקבלת החלטות מהירות בסביבה דינמית</li>
+      <li>תרגול מעשי</li>
+    </ul>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+
+
+</body>
+</html>
