@@ -127,6 +127,54 @@
   .track-pill.ai { background: rgba(0,200,255,0.1); border-color: rgba(0,200,255,0.4); color: var(--electric-blue); }
   .track-pill.mgmt { background: rgba(255,170,0,0.1); border-color: rgba(255,170,0,0.4); color: var(--electric-amber); }
 
+  .hero-stats {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 20px;
+    animation: fadeDown 0.8s ease 0.25s both;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px;
+    padding: 20px 36px;
+  }
+
+  .hero-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .hero-stat-num {
+    font-size: 36px;
+    font-weight: 900;
+    line-height: 1;
+    color: var(--white);
+  }
+
+  .hero-stat-label {
+    font-size: 12px;
+    color: var(--gray);
+    letter-spacing: 0.05em;
+  }
+
+  .hero-stat-divider {
+    width: 1px;
+    height: 40px;
+    background: rgba(255,255,255,0.1);
+  }
+
+  .hero-sub {
+    font-size: clamp(18px, 2.5vw, 26px);
+    color: var(--gray);
+    max-width: 400px;
+    line-height: 1.6;
+    margin-bottom: 48px;
+    font-weight: 300;
+    animation: fadeDown 0.8s ease 0.3s both;
+  }
+
   .scroll-indicator {
     position: absolute;
     bottom: 32px;
@@ -359,7 +407,18 @@
   .tool-amber { background: rgba(255,170,0,0.08); border-color: rgba(255,170,0,0.25); color: var(--electric-amber); }
   .tool-magenta { background: rgba(255,0,128,0.08); border-color: rgba(255,0,128,0.25); color: var(--electric-magenta); }
 
-  .card-note {
+  .card-note-warning {
+    background: rgba(255,170,0,0.08);
+    border: 1px solid rgba(255,170,0,0.25);
+    border-radius: 8px;
+    padding: 14px 16px;
+    color: rgba(255,255,255,0.85);
+    border-top: none;
+  }
+
+  .card-note-warning strong {
+    color: var(--electric-amber);
+  }
     margin-top: 20px;
     font-size: 12px;
     color: var(--gray);
@@ -442,7 +501,14 @@
   <div class="grid-bg"></div>
   <div class="hero-badge">🎓 אקדמיה של מפעל הפיס · 2026</div>
   <h1>בחרו את<br><span>הסדנה שלכם.</span></h1>
-  <p class="hero-sub">6 סדנאות לבחירה. 4 בתחום הבינה המלאכותית, 2 בתחום כישורי הניהול. הבחירה בידיים שלכם.</p>
+  <div class="hero-stats">
+    <div class="hero-stat"><span class="hero-stat-num">6</span><span class="hero-stat-label">סדנאות לבחירה</span></div>
+    <div class="hero-stat-divider"></div>
+    <div class="hero-stat"><span class="hero-stat-num c-blue">4</span><span class="hero-stat-label">בתחום AI</span></div>
+    <div class="hero-stat-divider"></div>
+    <div class="hero-stat"><span class="hero-stat-num c-amber">2</span><span class="hero-stat-label">כישורי ניהול</span></div>
+  </div>
+  <p class="hero-sub">הבחירה בידיים שלכם.</p>
   <div class="tracks">
     <span class="track-pill ai">מסלול AI</span>
     <span class="track-pill mgmt">מסלול כישורי ניהול וחשיבה</span>
@@ -470,7 +536,7 @@
     <div class="card-number">סדנה 01</div>
     <div class="card-accent accent-blue"></div>
     <h2 class="card-headline">הנתונים<br>מדברים.</h2>
-    <p class="card-hook">תוך שעה תדעו איך להפוך כל מסמך למצגת. כל נתון לגרף. כל רעיון לדאשבורד.</p>
+    <p class="card-hook">תלמדו להפוך כל מסמך למצגת, כל נתון לגרף, כל רעיון לדאשבורד — מהר ממה שחשבתם.</p>
 
     <p class="card-section-title c-blue">למי זה מיועד</p>
     <div class="card-audience border-blue">
@@ -479,7 +545,7 @@
 
     <p class="card-section-title c-blue">מה תקבלו</p>
     <ul class="card-items li-blue">
-      <li>מצגת בעיצוב מקצועי — מוכנה תוך דקות</li>
+      <li>מצגת בעיצוב מקצועי — ללא עיצוב ידני</li>
       <li>גרפים ותרשימים שמדברים בעד עצמם</li>
       <li>דאשבורד מנהלים — חי, ברור, ומרשים</li>
       <li>ויז'ואל מותאם אישית שנראה כאילו עוצב ע"י מעצב</li>
@@ -490,18 +556,46 @@
     <div class="tools-row">
       <span class="tool-tag tool-blue">Gamma</span>
       <span class="tool-tag tool-blue">NotebookLM</span>
-      <span class="tool-tag tool-blue">Grok</span>
       <span class="tool-tag tool-blue">Gemini</span>
       <span class="tool-tag tool-blue">Claude</span>
     </div>
   </div>
 
-  <!-- CARD 2 -->
-  <div class="card card-teal">
+  <!-- CARD 2 (was 3) -->
+  <div class="card card-purple">
     <div class="card-number">סדנה 02</div>
+    <div class="card-accent accent-violet"></div>
+    <h2 class="card-headline">וידאו מקצועי.<br>בעצמאות מלאה.</h2>
+    <p class="card-hook">בלי צלם. בלי מעצב. בלי תקציב הפקה.</p>
+
+    <p class="card-section-title c-violet">למי זה מיועד</p>
+    <div class="card-audience border-violet">
+      אנשי שיווק ותוכן שרוצים לייצר תוכן ויזואלי מרשים — מהר, בעצמאות מלאה.
+    </div>
+
+    <p class="card-section-title c-violet">מה תקבלו</p>
+    <ul class="card-items li-violet">
+      <li>תסריט וסטוריבורד — AI כותב, אתם מכוונים</li>
+      <li>תמונות מקצועיות מטקסט — ללא צלם</li>
+      <li>קליפ מוכן לרשתות — שנוצר בסדנה</li>
+      <li>שיטת עבודה שתשתמשו בה גם מחר</li>
+      <li>תרגול מעשי</li>
+    </ul>
+
+    <p class="card-section-title c-violet">הכלים</p>
+    <div class="tools-row">
+      <span class="tool-tag tool-violet">Google Flow</span>
+      <span class="tool-tag tool-violet">Nano Banana</span>
+    </div>
+    <p class="card-note card-note-warning">⚠️ <strong>שימו לב:</strong> הסדנה כוללת שימוש ב-Google Flow. בתחילת המפגש נפעיל יחד ניסיון חינם של חודש — ההפעלה דורשת חשבון Google אישי וכרטיס אשראי, ללא חיוב בחודש הראשון. בסוף הסדנה נבטל יחד.</p>
+  </div>
+
+  <!-- CARD 3 (was 2) -->
+  <div class="card card-teal">
+    <div class="card-number">סדנה 03</div>
     <div class="card-accent accent-mint"></div>
     <h2 class="card-headline">כמה זמן בזבזתם השבוע על קריאת דוחות?</h2>
-    <p class="card-hook">AI יעשה את זה תוך שניות. הסדנה הזו תלמד אתכם איך.</p>
+    <p class="card-hook">AI יעשה את זה מהר ממה שחשבתם. הסדנה הזו תלמד אתכם איך.</p>
 
     <p class="card-section-title c-mint">למי זה מיועד</p>
     <div class="card-audience border-mint">
@@ -510,8 +604,8 @@
 
     <p class="card-section-title c-mint">מה תקבלו</p>
     <ul class="card-items li-mint">
-      <li>PDF של 50 עמודים — שורה תחתונה תוך 30 שניות</li>
-      <li>אקסל עם אלפי שורות — מגמות ותובנות בלחיצת כפתור</li>
+      <li>PDF של 50 עמודים — שורה תחתונה, בלי לקרוא הכל</li>
+      <li>אקסל עם אלפי שורות — מגמות ותובנות ללא נוסחאות</li>
       <li>מחקר מתחרים מקיף — בלי שעות של גוגל</li>
       <li>הצעת ערך מבוססת דאטה אמיתי — לא אינטואיציה</li>
       <li>תרגול מעשי</li>
@@ -525,37 +619,6 @@
       <span class="tool-tag tool-mint">Gemini</span>
       <span class="tool-tag tool-mint">Perplexity</span>
     </div>
-  </div>
-
-  <!-- CARD 3 -->
-  <div class="card card-purple">
-    <div class="card-number">סדנה 03</div>
-    <div class="card-accent accent-violet"></div>
-    <h2 class="card-headline">וידאו מקצועי.<br>תוך שעה.<br>לבד.</h2>
-    <p class="card-hook">בלי צלם. בלי מעצב. בלי תקציב הפקה.</p>
-
-    <p class="card-section-title c-violet">למי זה מיועד</p>
-    <div class="card-audience border-violet">
-      אנשי שיווק ותוכן שרוצים לייצר תוכן ויזואלי מרשים — מהר, בעצמאות מלאה.
-    </div>
-
-    <p class="card-section-title c-violet">מה תקבלו</p>
-    <ul class="card-items li-violet">
-      <li>תסריט וסטוריבורד — AI כותב, אתם מכוונים</li>
-      <li>תמונות מקצועיות מטקסט — בשניות</li>
-      <li>קליפ מוכן לרשתות — שנוצר בסדנה, ביום אחד</li>
-      <li>שיטת עבודה שתשתמשו בה גם מחר</li>
-      <li>תרגול מעשי</li>
-    </ul>
-
-    <p class="card-section-title c-violet">הכלים</p>
-    <div class="tools-row">
-      <span class="tool-tag tool-violet">Google Flow</span>
-      <span class="tool-tag tool-violet">Gemini Imagen</span>
-      <span class="tool-tag tool-violet">Kling AI</span>
-      <span class="tool-tag tool-violet">Hailuo</span>
-    </div>
-    <p class="card-note">* הסדנה כוללת הפעלת ניסיון חינם של חודש ב-Google — ללא חיוב בחודש הראשון</p>
   </div>
 
   <!-- CARD 4 -->
@@ -573,7 +636,7 @@
     <p class="card-section-title c-green">מה תקבלו</p>
     <ul class="card-items li-green">
       <li>זיהוי בעיה תפעולית ותרגומה לכלי דיגיטלי</li>
-      <li>אפיון מהיר עם AI — מסמך דרישות תוך דקות</li>
+      <li>אפיון עם AI — מסמך דרישות ברור ומוכן</li>
       <li>בניית אפליקציה מתפקדת מפרומפט בשפה טבעית</li>
       <li>התאמה ויזואלית והעלאה לאינטרנט עם קישור חי</li>
       <li>תרגול מעשי</li>
@@ -653,8 +716,96 @@
 
 </div>
 
-<!-- FOOTER -->
+<!-- CTA SECTION -->
+<section class="cta-section">
+  <div class="cta-inner">
+    <div class="cta-badge">⏳ מקומות מוגבלים</div>
+    <h2 class="cta-title">כל סדנה מוגבלת<br>למספר משתתפים קטן.</h2>
+    <p class="cta-sub">כדי לשמור על חוויה אישית ואפקטיבית — כל קבוצה נשמרת קטנה ומרוכזת. ניתן לדרג עד 3 סדנאות לפי סדר העדיפויות שלכם.</p>
+    <a href="https://preview--form-genius-e2436029.base44.app/FormView?id=bi0mu9b8mog3luw5" target="_blank" class="cta-btn">
+      לבחירה והרשמה ←
+    </a>
+    <p class="cta-note">ההרשמה מהירה · פחות מ-2 דקות · ניתן לבחור עד 3 סדנאות</p>
+  </div>
+</section>
 
+<style>
+  .cta-section {
+    padding: 100px 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(0,200,255,0.07) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .cta-inner {
+    max-width: 600px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .cta-badge {
+    display: inline-block;
+    background: rgba(255,170,0,0.12);
+    border: 1px solid rgba(255,170,0,0.35);
+    color: var(--electric-amber);
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    padding: 7px 20px;
+    border-radius: 100px;
+    margin-bottom: 28px;
+  }
+
+  .cta-title {
+    font-size: clamp(32px, 6vw, 56px);
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 20px;
+  }
+
+  .cta-sub {
+    font-size: 16px;
+    color: var(--gray);
+    line-height: 1.7;
+    margin-bottom: 40px;
+    font-weight: 300;
+  }
+
+  .cta-btn {
+    display: inline-block;
+    padding: 18px 48px;
+    background: linear-gradient(135deg, var(--electric-blue), var(--electric-mint));
+    color: #000;
+    font-weight: 800;
+    font-size: 18px;
+    border-radius: 100px;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 0 40px rgba(0,200,255,0.3);
+    letter-spacing: 0.01em;
+    font-family: 'Heebo', sans-serif;
+  }
+
+  .cta-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 60px rgba(0,200,255,0.5);
+  }
+
+  .cta-note {
+    margin-top: 20px;
+    font-size: 13px;
+    color: var(--gray);
+    letter-spacing: 0.03em;
+  }
+</style>
 
 </body>
 </html>
